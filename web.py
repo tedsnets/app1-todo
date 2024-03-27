@@ -2,9 +2,8 @@ import streamlit as st
 import functions
 import os
 
-if not os.path.exists(r"files\todos.txt"):
-    os.makedirs("files")
-    with open(r"files\todos.txt", "w") as file:
+if not os.path.exists(r"todos.txt"):
+    with open(r"todos.txt", "w") as file:
         pass
 
 todos = functions.get_todos()
@@ -23,7 +22,7 @@ st.subheader("This is my todo app.")
 for index, todo in enumerate(todos):
     checkbox = st.checkbox(todo, key=index)
     if checkbox:
-        print(index, todo, todos[index])
+        # print(index, todo, todos[index])
         todos.pop(index)
         functions.write_todos(todos)
         del st.session_state[index]
